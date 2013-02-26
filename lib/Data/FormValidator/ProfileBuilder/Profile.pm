@@ -51,6 +51,19 @@ sub add_field_filter {
     $self->field_filters->{$name} = $code;
 }
 
+sub remove_constraint_methods {
+    my ($self, $key) = @_;
+    delete $self->constraint_methods->{$key};
+}
+
+sub clear_constraint_methods {
+    my $self = shift;
+    my $hash = $self->constraint_methods;
+    foreach my $key (keys %$hash) {
+        $self->remove_constraint_methods($key);
+    }
+}
+
 sub add_constraint_method {
     my ($self, $name, $constraint) = @_;
     my $list = $self->constraint_methods->{$name} ||= [];

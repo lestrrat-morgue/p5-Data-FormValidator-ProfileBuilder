@@ -24,6 +24,11 @@ sub apply_defaults {
     }
 }
 
+sub get_profile {
+    my ($self, $name) = @_;
+    return $self->profiles->{$name};
+}
+
 sub new_profile {
     my ($self, $name) = @_;
     if (exists $self->profiles->{$name}) {

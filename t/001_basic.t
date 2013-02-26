@@ -45,5 +45,16 @@ is_deeply($profile->to_hash, {
     },
 });
 
+$profile->remove_constraint_methods("ddd");
+is_deeply($profile->to_hash, {
+    required => [ qw(aaa bbb ccc) ],
+    optional => [ qw(ddd eee fff) ],
+    field_filters => {
+        ddd => $DUMMY_SUB
+    },
+    constraint_methods => {
+        eee => [ $DUMMY_REGEX ],
+    },
+});
 
 done_testing;
